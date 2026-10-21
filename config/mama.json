@@ -1,0 +1,23 @@
+{
+  "name": "Mamá",
+  "locale": "es-CO",
+  "adminPin": "0000",
+  "help": {
+    "label": "Escribir a Javier",
+    "whatsappPhone": "57XXXXXXXXXX"
+  },
+  "tiles": [
+    { "label": "Videollamada familiar", "icon": "📹", "color": "#1F8A4C",
+      "open": { "type": "web", "url": "https://meet.google.com/xxx-xxxx-xxx" } },
+    { "label": "WhatsApp", "icon": "💬", "color": "#1F8A4C",
+      "open": { "type": "uri", "uri": "whatsapp:" } },
+    { "label": "Correo", "icon": "✉️", "color": "#0F6CBD",
+      "open": { "type": "app", "id": "Microsoft.OutlookForWindows_8wekyb3d8bbwe!Microsoft.OutlookforWindows" } },
+    { "label": "YouTube", "icon": "▶️", "color": "#C4302B",
+      "open": { "type": "web", "url": "https://www.youtube.com" } },
+    { "label": "El Tiempo", "icon": "📰", "color": "#3B3B3B",
+      "open": { "type": "web", "url": "https://www.eltiempo.com" } },
+    { "label": "Internet", "icon": "🌐", "color": "#5C2E91",
+      "open": { "type": "browser", "url": "https://www.google.com" } }
+  ]
+}

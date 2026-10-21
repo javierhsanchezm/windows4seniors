@@ -519,8 +519,8 @@ Microsoft Teams.
 windows4seniors/
 ├── docs/            Plan, setup checklist, hearing-aid notes
 ├── setup/           PowerShell scripts: accessibility, declutter, Chrome policies
-├── app/             TypeScript web UI: launcher screens and brain games
-├── src-tauri/       Native Windows layer: launch/focus apps, AppBar, audio, auto-start
+├── app/             The "Inicio" app: TypeScript screens (src/) and the Windows
+│   └── src-tauri/   layer (open and focus apps, docked bar, volume, auto-start)
 └── config/          Per-person launcher configuration (papa.json, mama.json)
 ```
 
@@ -596,7 +596,7 @@ inbox, and everything else is labelled for you to review on your visits.
    a basic Android phone and SIM for his WhatsApp. Make a list of the newspapers both
    parents read.
 2. **Done:** the Windows setup scripts, with a preview mode (`-WhatIf`) and undo, for both PCs. See [`setup/README.md`](../setup/README.md).
-3. **Claude:** build the launcher MVP (Spanish, configurable for Dad and Mum).
+3. **Done (first version):** the Home screen "Inicio" (Spanish, configurable for Dad and Mum). See [`app/README.md`](../app/README.md). Next, test it on a real PC.
 4. **Claude:** build the brain trainer MVP with Colombian content.
 
 ---

@@ -1,0 +1,27 @@
+{
+  "name": "Papá",
+  "locale": "es-CO",
+  "adminPin": "0000",
+  "help": {
+    "label": "Escribir a Javier",
+    "whatsappPhone": "57XXXXXXXXXX"
+  },
+  "tiles": [
+    { "label": "Correo", "icon": "✉️", "color": "#0F6CBD",
+      "open": { "type": "app", "id": "Microsoft.OutlookForWindows_8wekyb3d8bbwe!Microsoft.OutlookforWindows" } },
+    { "label": "WhatsApp", "icon": "💬", "color": "#1F8A4C",
+      "open": { "type": "uri", "uri": "whatsapp:" } },
+    { "label": "YouTube", "icon": "▶️", "color": "#C4302B",
+      "open": { "type": "web", "url": "https://www.youtube.com" } },
+    { "label": "El Tiempo", "icon": "📰", "color": "#3B3B3B",
+      "open": { "type": "web", "url": "https://www.eltiempo.com" } },
+    { "label": "Word", "icon": "📝", "color": "#185ABD",
+      "open": { "type": "program", "name": "winword.exe" } },
+    { "label": "Excel", "icon": "📊", "color": "#107C41",
+      "open": { "type": "program", "name": "excel.exe" } },
+    { "label": "Internet", "icon": "🌐", "color": "#5C2E91",
+      "open": { "type": "browser", "url": "https://www.google.com" } },
+    { "label": "Juegos de memoria", "icon": "🧠", "color": "#B4540A",
+      "open": { "type": "soon" } }
+  ]
+}

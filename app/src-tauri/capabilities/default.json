@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "The Home screen and the top bar",
+  "windows": ["home", "bar"],
+  "permissions": ["core:default"]
+}

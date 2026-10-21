@@ -1,0 +1,265 @@
+:root {
+  --bg: #F4F1EA;
+  --text: #1A1A1A;
+  --muted: #4A4A4A;
+  --bar-bg: #1C2B3A;
+  --bar-text: #FFFFFF;
+  --focus: #FFD400;
+  --radius: 20px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+button:hover {
+  outline: 6px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* --- Home screen ----------------------------------------------------------------------- */
+
+#app {
+  height: 100%;
+}
+
+body.home #app {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 40px 40px;
+  gap: 24px;
+}
+
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.greeting {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 700;
+}
+
+.today {
+  margin: 4px 0 0;
+  font-size: 36px;
+  color: var(--muted);
+}
+
+.clock {
+  font-size: 88px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tiles {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 28px;
+  min-height: 0;
+}
+
+.tiles[data-count="1"], .tiles[data-count="2"] { grid-template-columns: repeat(2, 1fr); }
+.tiles[data-count="3"], .tiles[data-count="5"], .tiles[data-count="6"],
+.tiles[data-count="9"] { grid-template-columns: repeat(3, 1fr); }
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--tile-color);
+  color: #FFFFFF;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
+  transition: transform 80ms;
+  min-height: 0;
+}
+
+.tile:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25); }
+.tile.opening { opacity: 0.6; }
+
+.tile-icon {
+  font-size: clamp(48px, 9vh, 88px);
+  line-height: 1;
+}
+
+.tile-label {
+  font-size: clamp(28px, 4.4vh, 40px);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.message {
+  position: fixed;
+  left: 50%;
+  bottom: 48px;
+  transform: translateX(-50%);
+  max-width: 80%;
+  padding: 24px 40px;
+  border-radius: var(--radius);
+  background: #1A1A1A;
+  color: #FFFFFF;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.message p { margin: 0; }
+.message[hidden] { display: none; }
+
+.setup-error {
+  margin: auto;
+  max-width: 900px;
+  text-align: center;
+  font-size: 32px;
+}
+
+.setup-error pre {
+  white-space: pre-wrap;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+/* --- Family (admin) menu --------------------------------------------------------------- */
+
+dialog.admin {
+  border: none;
+  border-radius: var(--radius);
+  padding: 32px;
+  width: 420px;
+  text-align: center;
+  font-size: 24px;
+}
+
+dialog.admin::backdrop { background: rgba(0, 0, 0, 0.6); }
+dialog.admin h2 { margin: 0 0 8px; }
+
+.pin-display {
+  min-height: 1.5em;
+  font-size: 32px;
+  letter-spacing: 8px;
+}
+
+.pin-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.pin-pad[hidden], .admin-actions[hidden] { display: none; }
+
+.pin-pad button,
+.admin-actions button,
+.admin-cancel {
+  padding: 16px;
+  border: 2px solid #CCCCCC;
+  border-radius: 12px;
+  background: #FFFFFF;
+  font-size: 28px;
+}
+
+.admin-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-cancel {
+  margin-top: 16px;
+  width: 100%;
+}
+
+/* --- Top bar --------------------------------------------------------------------------- */
+
+body.bar-page { background: var(--bar-bg); }
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100%;
+  padding: 0 16px;
+  background: var(--bar-bg);
+  color: var(--bar-text);
+}
+
+.bar-group {
+  display: flex;
+  gap: 12px;
+}
+
+.bar-button {
+  height: 72px;
+  padding: 0 24px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--bar-text);
+  font-size: 28px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.bar-home {
+  background: #F2B705;
+  border-color: #F2B705;
+  color: #1A1A1A;
+  font-weight: 700;
+}
+
+.bar-help {
+  background: #C4302B;
+  border-color: #C4302B;
+}
+
+.bar-now {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.bar-time {
+  font-size: 40px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-date {
+  font-size: 26px;
+  opacity: 0.9;
+}
+
+/* On narrow screens (for example 150% scaling) the date doesn't fit next to the
+   buttons. The time stays; the Home screen shows the full date. */
+@media (max-width: 1500px) {
+  .bar-date { display: none; }
+}
