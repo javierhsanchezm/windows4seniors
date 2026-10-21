@@ -4,6 +4,9 @@ A simple, safe, large-print Windows 11 Home setup for Dad (95), and possibly Mum
 with a small set of apps, hearing aids connected to the PC, and a home-made
 memory and attention trainer.
 
+Everything the parents see is in **Colombian Spanish**. The answers to the original open
+questions, and what they change, are in **§12 Decisions**.
+
 This document is the thinking: what to do, in which order, and why. Nothing here
 needs code until Phase 1.
 
@@ -264,6 +267,20 @@ Set these as Chrome policies (registry, applied to his account or machine-wide):
 What works depends entirely on **which Bluetooth technology his hearing aids use**,
 so start by finding the brand and model (ask his audiologist).
 
+### 7.1 Dad's hearing aids: Amplifon, Bluetooth, model unknown
+
+Amplifon is mainly a **retail chain**. It sells its own models, which are built by
+other manufacturers, as well as other brands. So "Amplifon + Bluetooth" doesn't tell
+us which branch of the tree below applies. At the Amplifon store, ask:
+
+1. The **exact model** and the **real manufacturer**.
+2. Can they **stream from any Bluetooth device** (classic Bluetooth), only from **iPhone**
+   (MFi) or **Android** (ASHA), or do they support **LE Audio / Auracast**?
+3. Is there a **TV streamer** accessory for this model, and what does it cost?
+
+On the new PC, check Settings → Bluetooth & devices. If it offers an **LE Audio**
+option, the PC side is ready for path A.
+
 ```
 Do the hearing aids support Bluetooth LE Audio (sometimes marketed as "Auracast")?
  ├─ Yes, and the PC supports LE Audio ──▶ A. Pair them directly in Windows 11 (24H2 or later)
@@ -330,18 +347,18 @@ needed). No Bluetooth pairing on the PC, so nothing to reconnect after sleep. Fo
 
 ```json
 {
-  "person": "Dad",
-  "language": "en-GB",
-  "helpContact": { "name": "Javier", "whatsapp": "+00000000000" },
+  "person": "Papá",
+  "language": "es-CO",
+  "helpContact": { "name": "Javier", "whatsapp": "+57XXXXXXXXXX" },
   "tiles": [
-    { "label": "Email",      "icon": "mail",      "open": { "app": "<AppID from Get-StartApps>" } },
-    { "label": "WhatsApp",   "icon": "whatsapp",  "open": { "app": "<AppID from Get-StartApps>" } },
-    { "label": "YouTube",    "icon": "youtube",   "open": { "web": "https://www.youtube.com" } },
-    { "label": "Newspaper",  "icon": "newspaper", "open": { "web": "https://www.example-newspaper.com" } },
-    { "label": "Word",       "icon": "word",      "open": { "app": "<AppID from Get-StartApps>" } },
-    { "label": "Excel",      "icon": "excel",     "open": { "app": "<AppID from Get-StartApps>" } },
-    { "label": "Internet",   "icon": "globe",     "open": { "browser": "https://www.google.com" } },
-    { "label": "Brain games","icon": "brain",     "open": { "internal": "/brain" } }
+    { "label": "Correo",             "icon": "mail",      "open": { "app": "<AppID from Get-StartApps>" } },
+    { "label": "WhatsApp",           "icon": "whatsapp",  "open": { "app": "<AppID from Get-StartApps>" } },
+    { "label": "YouTube",            "icon": "youtube",   "open": { "web": "https://www.youtube.com" } },
+    { "label": "Periódico",          "icon": "newspaper", "open": { "web": "https://<newspaper>" } },
+    { "label": "Word",               "icon": "word",      "open": { "app": "<AppID from Get-StartApps>" } },
+    { "label": "Excel",              "icon": "excel",     "open": { "app": "<AppID from Get-StartApps>" } },
+    { "label": "Internet",           "icon": "globe",     "open": { "browser": "https://www.google.com" } },
+    { "label": "Juegos de memoria",  "icon": "brain",     "open": { "internal": "/brain" } }
   ]
 }
 ```
@@ -464,12 +481,24 @@ for a 95-year-old). What he enjoys, and what frustrates him, is the spec for our
 
 ## 10. Mum
 
-- Her needs (vision, hearing, experience) may be different. Ask before assuming.
-- **If they share the PC:** separate Windows accounts are simpler if each has their own
-  email or WhatsApp. Each account gets its own launcher configuration (it's just a
-  different JSON file).
-- **If she prefers a tablet:** the brain trainer also runs there as a web app, and
-  WhatsApp and YouTube are already simple on tablets.
+Mum has **her own PC** and an **Android phone with WhatsApp**. She has no hearing
+problems. Her difficulty is **answering video calls** on WhatsApp, Google Meet and
+Microsoft Teams.
+
+- **Same launcher, her own configuration** (`config/mama.json`), with fewer tiles and the
+  calls at the top.
+- **WhatsApp calls:** link WhatsApp Desktop on her PC to her Android phone, so calls ring
+  on the PC. Practise answering together a few times, and stick a printed card next to
+  the screen ("When it rings: click the green button").
+- **A permanent family video room:** create one Google Meet link (and/or Teams meeting)
+  that never changes. Her Home screen gets a big **"Videollamada familiar"** tile that
+  always opens it. The family says "join the family call" instead of sending new links.
+- **Meet and Teams in Chrome**, so she needs no extra apps or accounts. Allow camera and
+  microphone once for those sites, so she never sees a permission prompt.
+- **Links from others** (a doctor, say) arrive by email or WhatsApp. A *"Unirme a una
+  llamada"* tile can open the latest call link it finds, or you can add it to her
+  configuration remotely.
+- The brain trainer can be offered to her too, at a lighter level.
 
 ---
 
@@ -492,24 +521,83 @@ windows4seniors/
 ├── setup/           PowerShell scripts: accessibility, declutter, Chrome policies
 ├── app/             TypeScript web UI: launcher screens and brain games
 ├── src-tauri/       Native Windows layer: launch/focus apps, AppBar, audio, auto-start
-└── config/          Per-person launcher configuration (dad.json, mum.json)
+└── config/          Per-person launcher configuration (papa.json, mama.json)
 ```
 
 ---
 
-## 12. Open questions
+## 12. Decisions (answered 2026-10-21)
 
-1. **Language and country** for the interface, voices, sayings and newspapers?
-2. **Hearing aids:** brand and model? **PC:** which model? Is it new, and is it a desktop or
-   a laptop?
-3. Does Dad have a **smartphone** (WhatsApp Desktop needs one) and a **Microsoft 365**
-   subscription? Which **email** provider?
-4. **Vision, hand tremor, hearing:** what are his specific difficulties? These decide most
-   of the settings.
-5. Will Mum **share the PC**, have her own account, or use a tablet?
-6. How do you want to **build** it? (Your experience with TypeScript, C# and so on;
-   whether to build it here step by step.)
-7. Do you live **nearby or far away**? This decides how much remote management matters.
+| Question | Answer | What it changes |
+|---|---|---|
+| Language and country | **Spanish, Colombia** | Interface, voices, sayings (*refranes*), music and newspapers are Colombian (§12.1) |
+| Dad's hearing aids | **Amplifon, Bluetooth, model unknown** | Find the exact model (§7.1) |
+| Dad's PC | **New desktop / all-in-one** | Should already run Windows 11 24H2 or later; check LE Audio support (§7.1) |
+| Dad's accounts | **Microsoft 365; Gmail. No smartphone with WhatsApp** | WhatsApp needs a phone for him (§12.2); Outlook reads Gmail; scam filtering is done in Gmail (§12.3) |
+| Dad's main difficulty | **Hearing only** (vision and mouse are fine) | Keep Windows close to normal size; put the effort into sound and captions (§12.4) |
+| Mum | **Her own PC and Android phone with WhatsApp; no hearing issues; struggles to answer video calls (WhatsApp, Google Meet, Teams)** | A separate, smaller Home screen for her, built around calls (§10) |
+| How to build | **Claude builds it in this repo; Javier tests on the PCs** | Code goes into this repo step by step |
+| Distance | **Same city, visits often** | Set things up in person; remote access is still useful but not critical (§12.5) |
+
+### 12.1 Colombian Spanish everywhere
+
+- Launcher and games in Spanish (`es-CO`): *Correo*, *WhatsApp*, *YouTube*, *Periódico*,
+  *Juegos de memoria*, *Ayuda*, *Inicio*.
+- **Voice:** Windows has no built-in Colombian voice. The natural Spanish (Mexico) voices
+  are the closest Latin American accent, and work offline. Two warmer options: record
+  instructions in a family member's voice, or use a cloud voice with a Colombian accent.
+- **Voice access and voice typing** support Spanish (Mexico), which works fine for
+  Colombian speakers.
+- **Live captions** support Spanish.
+- **Newspapers:** the Colombian papers he reads (to confirm, for example *El Tiempo* or
+  *El Espectador*), plus any regional paper from his home town.
+- **Brain games content:** Colombian *refranes* and sayings, music from his youth
+  (boleros, bambucos, cumbias, pasillos of the 1940s–60s), photos of his home town,
+  prices in pesos for the "shopping change" game.
+
+### 12.2 WhatsApp for Dad
+
+WhatsApp on a PC is a "linked device" and can't exist without a phone. Options:
+
+1. **A basic Android phone with a Colombian SIM (recommended)**, kept charging at home.
+   Register WhatsApp with his number, link the PC, and open WhatsApp on the phone at
+   least every couple of weeks (the PC is disconnected after about 14 days of phone
+   inactivity). A family member can do this during visits.
+2. Use an existing family number. This isn't recommended, because family chats would mix
+   with his.
+
+### 12.3 Gmail in Outlook
+
+The new Outlook adds Gmail accounts directly. Junk and scam filtering then happens in
+**Gmail's own settings**: create filters so only family and known senders reach the
+inbox, and everything else is labelled for you to review on your visits.
+
+### 12.4 Dad: focus on hearing, not on size
+
+- Display scale: the PC's recommended value, plus a small text-size increase. No need
+  for huge pointers or other vision aids.
+- **Sound first:** the hearing-aid connection (§7), YouTube *Always show captions*,
+  **Live captions** on during WhatsApp video calls, *Flash the screen* for alerts, and a
+  clearly visible "where is the sound going?" indicator in the launcher's top bar.
+- The launcher's tiles stay large anyway, because that helps everyone.
+
+### 12.5 Same city
+
+- Do Phase 0 **in person**, using a printed checklist.
+- Still install **Chrome Remote Desktop** on both PCs: a five-minute remote fix saves
+  a trip.
+- The **Help** button can simply open a WhatsApp chat with you. A push notification is
+  optional.
+
+### 12.6 Next steps
+
+1. **Before the next visit:** ask the Amplifon store for Dad's exact hearing-aid model
+   and whether it streams via classic Bluetooth, LE Audio, or only iPhone/Android. Get
+   a basic Android phone and SIM for his WhatsApp. Make a list of the newspapers both
+   parents read.
+2. **Claude:** write the Windows setup script (`setup/`), with a dry-run mode, for both PCs.
+3. **Claude:** build the launcher MVP (Spanish, configurable for Dad and Mum).
+4. **Claude:** build the brain trainer MVP with Colombian content.
 
 ---
 
