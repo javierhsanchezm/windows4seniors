@@ -595,7 +595,7 @@ inbox, and everything else is labelled for you to review on your visits.
    and whether it streams via classic Bluetooth, LE Audio, or only iPhone/Android. Get
    a basic Android phone and SIM for his WhatsApp. Make a list of the newspapers both
    parents read.
-2. **Claude:** write the Windows setup script (`setup/`), with a dry-run mode, for both PCs.
+2. **Done:** the Windows setup scripts, with a preview mode (`-WhatIf`) and undo, for both PCs. See [`setup/README.md`](../setup/README.md).
 3. **Claude:** build the launcher MVP (Spanish, configurable for Dad and Mum).
 4. **Claude:** build the brain trainer MVP with Colombian content.
 
